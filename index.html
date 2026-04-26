@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>けたちまオリパ ～絶対勝てる～</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <h1>けたちまオリパ ～絶対勝てる～</h1>
+        <p class="rate">1KT = 1円</p>
+      </header>
+
+      <section class="wallet">
+        <div class="wallet-item">
+          <span class="label">残高</span>
+          <strong id="kt-balance">0 KT</strong>
+        </div>
+        <div class="wallet-item">
+          <span class="label">所持カード</span>
+          <strong id="card-count">0 枚</strong>
+        </div>
+        <div class="wallet-item">
+          <span class="label">次の更新</span>
+          <strong id="rotation-next">00:00</strong>
+        </div>
+        <div class="wallet-actions">
+          <button id="sound-btn" class="ghost-btn" type="button">SE ON</button>
+          <button id="charge-btn" class="ghost-btn" type="button">+1000KT</button>
+          <button id="reset-btn" class="ghost-btn danger" type="button">リセット</button>
+        </div>
+      </section>
+
+      <section class="gacha-zone" id="gacha-zone"></section>
+
+      <section class="result-zone">
+        <h2>排出結果</h2>
+        <div id="result-stage" class="result-stage">
+          <p class="hint">ガチャを引くとここにカードが表示される</p>
+        </div>
+      </section>
+
+      <section class="history-zone">
+        <h2>最近の履歴</h2>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+
+      <section class="collection-zone">
+        <h2>コレクション</h2>
+        <div id="collection-grid" class="collection-grid"></div>
+      </section>
+    </div>
+
+    <div id="draw-overlay" class="draw-overlay hidden" aria-hidden="true">
+      <div class="draw-panel">
+        <p id="draw-label" class="draw-label">カウントダウン</p>
+        <p id="draw-count" class="draw-count">3</p>
+        <div class="pack-stage">
+          <div id="draw-pack" class="draw-pack pack-white" aria-hidden="true">
+            <div class="pack-seal pack-seal-top"></div>
+            <div class="pack-core">
+              <div class="pack-ring"></div>
+              <div class="pack-emblem"></div>
+              <p class="pack-logo">KETACHIMA PACK</p>
+            </div>
+            <div class="pack-seal pack-seal-bottom"></div>
+            <div class="pack-foil"></div>
+          </div>
+        </div>
+        <p id="draw-color" class="draw-color"></p>
+        <button id="open-pack-btn" class="open-pack-btn hidden" type="button">開ける</button>
+      </div>
+    </div>
+
+    <template id="gacha-template">
+      <article class="gacha-box">
+        <div class="gacha-head">
+          <h3 class="gacha-name"></h3>
+          <span class="gacha-price"></span>
+        </div>
+        <p class="gacha-desc"></p>
+        <div class="pickup-box">
+          <p class="pickup-title">PICK UP</p>
+          <ul class="pickup-list"></ul>
+          <p class="pickup-note"></p>
+        </div>
+        <div class="gacha-actions">
+          <button class="draw-btn single" type="button">1回引く</button>
+          <button class="draw-btn ten" type="button">10連</button>
+        </div>
+      </article>
+    </template>
+
+    <template id="card-template">
+      <article class="card">
+        <div class="card-top">
+          <span class="rarity"></span>
+          <span class="type"></span>
+          <span class="pickup-mark">PICK UP</span>
+        </div>
+        <div class="card-art">
+          <img class="card-art-image" alt="" />
+        </div>
+        <h4 class="card-name"></h4>
+        <p class="card-skill"></p>
+        <div class="card-stats">
+          <span class="hp"></span>
+          <span class="atk"></span>
+        </div>
+        <div class="card-actions">
+          <button class="sell-btn" type="button">1枚売る</button>
+          <span class="sell-value"></span>
+        </div>
+        <div class="owned-chip"></div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
